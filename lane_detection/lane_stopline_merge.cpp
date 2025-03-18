@@ -65,20 +65,6 @@ ParabolicCurve fitParabolicCurve(pcl::PointCloud<pcl::PointXYZI>::Ptr& cluster) 
         return {0, 0, 0};
     }
 
-    // pcl::StatisticalOutlierRemoval<pcl::PointXYZI> sor;
-    // sor.setInputCloud(cluster);
-    // sor.setMeanK(40);  // 인접한 50개 점의 평균을 기준으로
-    // sor.setStddevMulThresh(1.0);  // 표준편차 기준으로 이상치 제거
-    // pcl::PointCloud<pcl::PointXYZI>::Ptr filtered_cluster(new pcl::PointCloud<pcl::PointXYZI>());
-    // sor.filter(*filtered_cluster);
-
-    // // 2. Pass-Through 필터를 사용하여 특정 범위 내의 점만 사용
-    // pcl::PassThrough<pcl::PointXYZI> pass;
-    // pass.setInputCloud(filtered_cluster);
-    // pass.setFilterFieldName("y");  // Y축을 기준으로 필터링
-    // pass.setFilterLimits(-10.0, 10.0);  // Y축 값이 -10에서 10 사이의 점만 선택
-    // pass.filter(*filtered_cluster);  // 필터링된 클러스터
-
     Eigen::MatrixXd A(cluster->points.size(), 3);
     Eigen::VectorXd Y(cluster->points.size());
 
@@ -1128,7 +1114,7 @@ void cloudCallBack(const sensor_msgs::PointCloud2ConstPtr& input) {
     // pcl::toROSMsg(*arrow_cloud, output2);
     // output2.header.frame_id = "map";  // 적절한 프레임 ID로 변경
     // pub_arrow_vis.publish(output2);
-    if (distance_from_stop < 10.0) {
+    if (distance_from_stop < 11.0) {
         left_solid_lane = true;
         right_solid_lane =true;
         right_left_off =true;
