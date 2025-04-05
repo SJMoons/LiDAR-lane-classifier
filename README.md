@@ -1,4 +1,4 @@
-# LiDAR_LaneDetection
+# LiDAR-lane-classifier
 # 주행 가능 영역 검출을 위한 LiDAR 기반 차선 분류
 
 ## 개요
